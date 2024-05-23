@@ -1,13 +1,15 @@
 import java.util.Iterator;
-import java.util.PrimitiveIterator.OfInt;
 import java.util.Random;
 
 public class Randoms implements Iterable<Integer> {
+    protected Random random;
+    protected int min;
+    protected int max;
 
-    protected OfInt random;
-
-    public Randoms(int min, int max) {
-        random = new Random().ints(min, (max + 1)).iterator();
+    public Randoms(int min, int max){
+        this.min = min;
+        this.max = max;
+        this.random = new Random();
     }
 
     @Override
@@ -20,8 +22,8 @@ public class Randoms implements Iterable<Integer> {
 
             @Override
             public Integer next() {
-                return random.nextInt();
+                return random.nextInt(max - min+1) + min;
             }
         };
     }
-}
+  }
